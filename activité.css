@@ -1,0 +1,48 @@
+.card-activity {
+  border-radius: 12px;
+  padding: 25px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  transition: 0.2s ease;
+}
+.card-activity:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+.card-icon {
+  font-size: 22px;
+  margin-right: 8px;
+  color: #000;
+}
+.title-activity {
+  color: #003366;
+  font-weight: bold;
+}
+#loadMoreBtn {
+  padding: 12px 28px;
+  font-size: 18px;
+  border-radius: 10px;
+}
+.btn-retour {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  border: 2px solid #003366;
+  color: #003366;
+  background: #fff;
+  transition: 0.25s ease;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-retour:hover {
+  background: #003366;
+  color: #fff;
+}
+.pagination li {
+  cursor: pointer;
+}
+.category-badge {
+  font-size: 12px;
+  padding: 5px 10px;
+}
