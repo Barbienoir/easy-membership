@@ -27,10 +27,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const pagination = document.getElementById('pagination');
 
   // Bouton retour
+  document.getElementById('backBtn').addEventListener('click', () => {
+  window.location.href = "PAGE_ACCUEIL.html"; // ← Remplace par le nom réel de ta page d'accueil
+});
+
   const backBtn = document.getElementById("backBtn");
   if(backBtn){
     backBtn.addEventListener("click", () => {
-      window.location.href = "index.html"; // ← mettre le nom de la page d'accueil
+      window.location.href = index.html; // ← mettre le nom de la page d'accueil
     });
   }
 
