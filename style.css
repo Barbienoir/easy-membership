@@ -7,7 +7,7 @@ body{
 }
 :root{
     --bleue:#0094C8;
-    --bleue-foncé:#083E76;
+    --bleue-foncé:#003B70;
     --blanc-texte: #ffffff;
     --gris-clair-hover: #e0e0e0;
 }
@@ -15,7 +15,7 @@ body{
 .navbar {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-     background-color: var(--bleue);
+    background-color: #003B70;
 }
 
 .navbar .nav-link {
@@ -26,18 +26,18 @@ body{
 }
 
 .navbar .nav-link:hover {
-    background-color:var(--bleue-foncé) ;
+    background-color:#003B70 ;
     border-radius: 10%;
 }
 
 .btn-adherer {
-    border-color: var(--bleue-foncé);
+    border-color: #003B70;
     color: var(--blanc-texte);
 }
 
 .btn-adherer:hover {
-    background-color: var(--bleue-foncé);
-    border-color: var(--bleue-foncé);
+    background-color: #003B70;
+    border-color: #003B70;
     color: var(--bleue);
 }
 
@@ -45,11 +45,11 @@ body{
 .btn-connexion {
     background-color:var(--blanc-texte);
     border-color: var(--blanc-texte);
-    color: var(--bleue-foncé) ;
+    color:#003B70 ;
    
 }
 .btn-connexion:hover {
     background-color:var(--blanc-texte);
     border-color: var(--blanc-texte);
-    color: var(--bleue-foncé);
+    color: #003B70;
 }
