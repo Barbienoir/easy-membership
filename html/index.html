@@ -1,196 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy-members</title>
- 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-   <link rel="stylesheet" href="">
-   <link rel="stylesheet" href="style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
-    <a class="navbar-brand me-5" href="#">
-      <img src="../assets/logo.png" alt="logo" style="height: 50px;" />
-    </a>
+            <a class="navbar-brand me-5" href="#">
+                <img src="../assets/logo.png" alt="logo" style="height: 50px;">
+            </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
-        
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#accueil">Accueil</a> </li>
-        <li class="nav-item"><a class="nav-link" href="#apropos">A propos</a></li>
-        <!-- <li class="nav-item"><a class="nav-link" href="#activites">Activités</a></li> -->
-        <li class="nav-item"><a class="nav-link" href="membres.html">Membres</a></li>
-        <li class="nav-item"><a class="nav-link" href="activité.html">Activités</a></li>
-        <li class="nav-item"><a class="nav-link" href="cotisations.html">Cotisations</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-      <div class="d-flex" role="search">
-        <a href="adherer.html" class="btn btn-primary btn-adherer me-2 fw-bold" type="button">ADHERER</a>
-        <a href="connexion.html" class="btn btn-light btn-connexion fw-bold" type="button">CONNEXION</a>
-      </div>
-    </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
+                    <li class="nav-item"><a class="nav-link active" href="#accueil">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#apropos">A propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/membre/dashboardmembre.html">Membres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="activité.html">Activités</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin/dasboard.html">Cotisations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="d-flex">
+                    <a href="adherer.html" class="btn btn-primary btn-adherer me-2 fw-bold">ADHÉRER</a>
+                    <a href="connexion.html" class="btn btn-light btn-connexion fw-bold">CONNEXION</a>
+                </div>
+            </div>
+        </div>
     </nav>
-<!-- -----------------accueil-------------------- -->
- <section class="accueil" id="accueil">
-   
 
-<header class="position-relative overflow-hidden">
-    <img src="img/IMAGE 1.jpg"
-         class="w-100 d-block"
-         alt="Hero"
-         style="height:560px; object-fit:cover;">
-         
-    <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(0,0,0,0.45);"></div>
+    <!-- SECTION ACCUEIL -->
+    <section id="accueil">
+        <header class="position-relative overflow-hidden">
+            <img src="/assets/ass1.jpg" class="w-100 d-block" alt="Hero"
+                style="height:560px; object-fit:cover;">
 
-    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10">
-            <h1 class="text-white fw-light lh-sm display-5" style="font-weight:300;">
-              Easy Membership - Micro SaaS pour la gestion des associations (Sénégal) 
-            </h1>
+            <!-- Overlay -->
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                style="background-color: rgba(0,0,0,0.45);"></div>
 
-            <p class="mt-4">
-              <a class="btn btn-primary btn-lg px-4" href="#">En savoir +</a>
-            </p>
+            <!-- Texte -->
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10">
+                            <h1 class="text-white fw-light lh-sm display-5">
+                                Une association sportive et culturelle au service de votre communauté
+                            </h1>
 
-          </div>
+                            <p class="text-white mt-3 lead">
+                                Grâce à notre application mobile-first, gérez vos membres, cotisations,
+                                événements et documents clés en toute simplicité. Une plateforme moderne
+                                au service du sport, de la culture et du vivre-ensemble.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <!-- SECTION A PROPOS -->
+    <section class="apropos py-5 bg-white" id="apropos">
+        <div class="container">
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="display-6 fw-normal text-dark">Qui sommes-nous ?</h2>
+                </div>
+            </div>
+
+            <!-- SPORT -->
+            <div class="row align-items-center gy-4 mb-5">
+                <div class="col-md-6">
+                    <h5 class="mb-3">SPORT</h5>
+                    <p class="text-muted">
+                        Notre association propose un large choix d’activités sportives destinées à tous
+                        les âges. Encadrées par des bénévoles passionnés, elles renforcent la cohésion,
+                        développent l’esprit d’équipe et encouragent une pratique physique régulière.
+                        Grâce à notre application, l’inscription aux cours et la gestion des événements
+                        sportifs se font désormais en quelques clics.
+                    </p>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card border-dark rounded">
+                        <img src="/assets/IMAGE 1.jpg" class="card-img-top img-fluid rounded" alt="sport">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CULTURE -->
+            <div class="row align-items-center gy-4">
+                <div class="col-md-6 order-md-1 order-2">
+                    <div class="card border-dark rounded">
+                        <img src="/assets/IMAGE2.jpeg" class="card-img-top img-fluid rounded" alt="culture"
+                            style="object-fit:cover; height:220px;">
+                    </div>
+                </div>
+
+                <div class="col-md-6 order-md-2 order-1">
+                    <h5 class="mb-3">CULTURE</h5>
+                    <p class="text-muted">
+                        La culture occupe une place essentielle dans notre association. Nous organisons des
+                        ateliers artistiques, des rencontres communautaires et des projets éducatifs ouverts
+                        à tous. L’application permet aux membres de consulter facilement les activités, de
+                        s’inscrire aux événements et d’accéder aux documents importants en temps réel.
+                    </p>
+                </div>
+            </div>
+
         </div>
-      </div>
+    </section>
+
+    <!-- SECTION CONTACT -->
+    <section class="contact" id="contact">
+        <div class="header">Contacts</div>
+
+        <div class="container my-5">
+            <div class="row g-4">
+
+                <!-- Formulaire -->
+                <div class="col-md-6">
+                    <form>
+                        <input type="text" class="form-control" placeholder="Nom" required>
+                        <input type="text" class="form-control" placeholder="Structure">
+                        <input type="email" class="form-control" placeholder="Email" required>
+                        <input type="tel" class="form-control" placeholder="Tel.">
+                        <input type="tel" class="form-control" placeholder="Tel. fixe">
+                        <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+
+                        <button type="submit" class="btn btn-send w-100">ENVOYEZ</button>
+                    </form>
+                </div>
+
+                <!-- Google Maps -->
+                <div class="col-md-6">
+                    <iframe src="https://www.google.com/maps?q=Quai+du+Mar%C3%A9chal+Juin,+S%C3%A8vres&output=embed"
+                        allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+      <!-- FOOTER -->
+<footer class=" text-white pt-5 pb-4">
+    <div class="container text-md-left">
+        <div class="row text-md-left">
+
+            <!-- À propos -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h5 class="text-uppercase mb-4 font-weight-bold text-warning">ASC</h5>
+                <p>
+                    Association Sportive et Culturelle dédiée à la communauté locale. 
+                    Nous réunissons sport, culture et convivialité dans un seul espace.
+                </p>
+            </div>
+
+            <!-- Liens rapides -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold text-warning">Liens</h6>
+                <p><a href="#accueil" class="text-white text-decoration-none">Accueil</a></p>
+                <p><a href="#apropos" class="text-white text-decoration-none">A propos</a></p>
+                <p><a href="activité.html" class="text-white text-decoration-none">Activités</a></p>
+                <p><a href="/membre/dashboardmembre.html" class="text-white text-decoration-none">Membres</a></p>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h6>
+                <p><i class="bi bi-geo-alt me-2"></i> Dakar </p>
+                <p><i class="bi bi-envelope me-2"></i> contact@asc.com</p>
+                <p><i class="bi bi-telephone me-2"></i> +33 123 45 67 </p>
+            </div>
+
+            <!-- Réseaux sociaux -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold text-warning">Suivez-nous</h6>
+                <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="bi bi-linkedin"></i></a>
+            </div>
+
+        </div>
+
+        <hr class="my-3">
+
+        <div class="row align-items-center">
+            <div class="col-md-7 col-lg-8">
+                <p>© 2025 ASC. Tous droits réservés.</p>
+            </div>
+        </div>
     </div>
-  </header>
+</footer>
 
- </section>
- <!-- -------------------apropos----------------- -->
-  <section class="apropos py-5 bg-white" id="apropos">
-   
-    <div class="container">
-
-      <div class="row mb-4">
-        <div class="col-12">
-          <h2 class="display-6 fw-normal text-dark">Qui sommes-nous ?</h2>
-        </div>
-      </div>
-
-      <div class="row align-items-center gy-4 mb-5">
-        <div class="col-md-6">
-          <h5 class="mb-3">Titre 1 OPTIC-SN</h5>
-          <p class="text-muted">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          </p>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card border-dark rounded">
-            <img src="img/IMAGE2.jpeg" class="card-img-top img-fluid rounded" alt="Equipe">
-          </div>
-        </div>
-      </div>
-
-      <div class="row align-items-center gy-4">
-        <div class="col-md-6 order-md-1 order-2">
-          <div class="card border-dark rounded">
-            <img src="img/IMAGE3.jpeg" class="card-img-top img-fluid rounded" alt="Equipe 2" style="object-fit:cover; height:220px;">
-          </div>
-        </div>
-
-        <div class="col-md-6 order-md-2 order-1">
-          <h5 class="mb-3">Titre 2 OPTIC-SN</h5>
-          <p class="text-muted">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  
-
-  </section>
-  <!------------------------activites -------------------------- -->
-  
-  /
-  <!-- ----------------------  membres   --------------------------- -->
-   <!-- la section membre est une page de redirection -->
-   <!-- ------------------------------------ opportinutés----------------------------- -->
-  
-  
-    <!-- ----------------------------contact------------------- -->
-     <section class="contact" id="contact">
-
-       <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .header {
-            background: linear-gradient(135deg, #0d6efd, #0a58ca);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 32px;
-            font-weight: bold;
-        }
-        .form-control, textarea {
-            margin-bottom: 15px;
-        }
-        .btn-send {
-            background-color: #3b76f0;
-            color: white;
-            font-weight: bold;
-            padding: 12px;
-        }
-        .btn-send:hover {
-            background-color: #2c5fd0;
-        }
-        iframe {
-            border: 0;
-            width: 100%;
-            height: 420px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="header">Contacts</div>
-
-<div class="container my-5">
-    <div class="row g-4">
 
     
-        <div class="col-md-6">
-            <form>
-                <input type="text" class="form-control" placeholder="Nom" required>
-                <input type="text" class="form-control" placeholder="Structure">
-                <input type="email" class="form-control" placeholder="Email" required>
-                <input type="tel" class="form-control" placeholder="Tel.">
-                <input type="tel" class="form-control" placeholder="Tel. fixe">
-                <textarea class="form-control" rows="4" placeholder="Message"></textarea>
 
-                <button type="submit" class="btn btn-send w-100">ENVOYEZ</button>
-            </form>
-        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-        <!-- MAP -->
-        <div class="col-md-6">
-            <iframe 
-                src="https://www.google.com/maps?q=Quai+du+Mar%C3%A9chal+Juin,+S%C3%A8vres&output=embed"
-                allowfullscreen=""
-                loading="lazy">
-            </iframe>
-        </div>
-
-    </div>
-</div>
-     </section>
 </body>
 </html>

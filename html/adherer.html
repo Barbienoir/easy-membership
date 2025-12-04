@@ -15,11 +15,15 @@
             background-color:#003B70;
             font-size: medium;
         }
-        .bouton:hover{
-            background-color:#003B70;
-            padding-left: 2vw;
-            padding-bottom:2vw ;
-        }
+        .bouton,
+        .bouton:hover,   
+        .bouton:active,
+        .bouton:focus {
+    background-color: #003B70 !important;
+    color: white !important;
+}
+
+        
         .register{
             font-size: 1.8rem;
             color:#003B70 ;
@@ -31,52 +35,77 @@
     <div class="container-fluid">
         <div class="row py-2">
             <div class="col-md-6 col-8 mx-auto">
-                <a href="index.html" class="btn text-light btn-lg fw-bold ms-5 bouton">Retour</a>
+                
                 <span class="ms-5 register">Page d'enregistrement !</span>
             </div>
         </div>
         <div class="row py-5 bleue">
-            <div class="col-md-6 mx-auto bg-light rounded">
+           <div class="col-md-6 mx-auto bg-light rounded" id="registrationForm">
+            <form id="myForm">
                 <div class="input-group input-group-lg pt-3">
                     <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" class="form-control" placeholder="Prénom et Nom">
+                    <input type="text" class="form-control" placeholder="Prénom et Nom" id="inputNom">
+                    <div class="invalid-feedback"></div> 
                 </div>
                 <div class="input-group input-group-lg pt-3">
                     <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                    <input type="text" class="form-control" placeholder="Téléphone">
+                    <input type="Number" class="form-control" placeholder="Téléphone" id="inputTelephone">
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="input-group input-group-lg pt-3">
                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input type="mail" class="form-control" placeholder="Email" id="inputEmail">
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="input-group input-group-lg pt-3">
                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="text" class="form-control" placeholder="Mot de passe">
+                    <input type="password" class="form-control" placeholder="Mot de passe" id="inputPassword">
                     <span class="input-group-text"><i class="bi bi-eye-fill text-secondary"></i></span>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="input-group input-group-lg pt-3">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control" placeholder="Corfirmation Mot de passe" **id="inputConfirmPassword"**>
+                    <span class="input-group-text"><i class="bi bi-eye-fill text-secondary"></i></span>
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="input-group input-group-lg pt-3">
                     <span class="input-group-text"><i class="bi bi-card-list"></i></span>
-                    <input type="text" class="form-control" placeholder="Titre">
+                    <input type="text" class="form-control" placeholder="Profession" id="inputTitre">
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="input-group input-group-lg pt-3">
                     <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                    <input type="text" class="form-control" placeholder="Adresse">
+                    <input type="text" class="form-control" placeholder="Adresse" id="inputAdresse">
+                    <div class="invalid-feedback"></div>
                 </div>
+                
+                <div class="input-groupinput-group-lg pt-3">
+                    <label class="input-group-text" for="inputRole">Roles</label>
+                    <select class="form-select" id="inputRole">
+                        <option value="" selected>Choose...</option>
+                        <option value="1">Président</option>
+                        <option value="2">Secretaire</option>
+                        <option value="3">Membre</option>
+                    </select>
+                    <div class="invalid-feedback"></div>
+                </div>
+            
+                <div class="d-flex justify-content-between  pt-3">
+                    <!-- <a href="index.html" class="btn text-light btn-lg fw-bold ms-5 bouton"></a> -->
+                    <button type="submit"  class="btn btn-lg px-5 mb-3 fw-bold text-light bouton"> <a href="connexion.html"></a>connexion</button>
 
-                <div class="pt-3">
-                    <div class="btn btn-secondary text-dark fs-6 px-5 py-2 btn-lg rounded-0">Image de profil</div>
+                    <button type="submit" id="submitBtn" class="btn btn-lg px-5 mb-3 fw-bold text-light bouton">Valider</button>
                 </div>
-
-                <div class="d-flex justify-content-end pt-3">
-                    <a class="btn btn-lg px-5 mb-3 fw-bold text-light bouton">Valider</a>
-                </div>
-            </div>
+               
+            </form>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+<script src="/js/adherer.js"></script> 
 </body>
 
 </html>

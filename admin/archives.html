@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakéli Tontine - Archives</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+    <style>
+        /* 1. Définition des couleurs personnalisées */
+        :root {
+            --bleu: #0094C8;
+            --bleu-fonce: #003B70;
+            --blanc-texte: #ffffff;
+            --bs-gris-fond: #f4f4f4;
+            --bs-success-manual: #20df7f;
+        }
+
+        body {
+            background-color: var(--bs-gris-fond);
+        }
+
+        /* 2. Styles spécifiques à la Sidebar */
+        #sidebar {
+            width: 250px;
+            background-color: var(--bleu-fonce);
+            transition: transform 0.3s ease;
+            z-index: 1050; 
+        }
+        @media (max-width: 767.98px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+        }
+        @media (min-width: 768px) {
+            .content-wrapper {
+                margin-left: 250px !important;
+            }
+        }
+
+        .nav-link.custom-hov:hover, .nav-item .active:hover {
+            background-color: var(--bleu);
+            border-radius: 0.25rem;
+        }
+
+        /* 3. Style pour l'élément de navigation actif */
+        .nav-item .active {
+            background-color: var(--bleu);
+            border-radius: 0.25rem;
+        }
+
+        /* 4. Couleurs d'accentuation pour les tables et pagination */
+        .accent-bg {
+            background-color: var(--bleu) !important;
+            color: var(--blanc-texte);
+        }
+        .text-action {
+             color: var(--bleu-fonce); /* Pour le hover sur les actions 'Voir' et 'Pagination' */
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="sidebar" class="position-fixed h-100 d-flex flex-column pt-0">
+        <div class="d-flex align-items-center justify-content-center py-3 border-bottom border-secondary-subtle">
+            <span class="text-white fw-bold text-uppercase">Bakeli Tontine</span>
+        </div>
+
+        <div class="flex-grow-1 overflow-auto p-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="dasboard.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-list me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a href="Utilisateur.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-person me-2"></i> Utilisateur
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a href="cotisation.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-currency-dollar me-2"></i> Cotisation
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <button class="btn nav-link text-white d-flex justify-content-between align-items-center w-100 custom-hov active" onclick="toggleMenu()" aria-expanded="true">
+                        <span class="d-flex align-items-center gap-2">⚙️ Paramètres</span>
+                        <span id="arrow" class="transition-transform"><i class="bi bi-caret-down-fill"></i></span>
+                    </button>
+                    <div id="submenu" class="collapse show ms-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="parametre.html" class="nav-link text-white custom-hov py-2">Paramètres Généraux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="utilisateurparametre.html" class="nav-link text-white custom-hov py-2">Utilisateurs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="archives.html" class="nav-link text-white custom-hov py-2 active">Archives</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="bloques.html" class="nav-link text-white custom-hov py-2">Membres Bloqués</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper d-flex flex-column min-vh-100">
+
+        <header class="d-flex align-items-center justify-content-between p-3 bg-white shadow-sm">
+            <button id="menu-btn" class="btn d-md-none fs-4" type="button" onclick="toggleSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <h1 class="fs-4 fw-bold mb-0">Archives</h1>
+        </header>
+
+        <main class="flex-grow-1 p-3 p-md-4 d-flex align-items-start justify-content-center">
+            
+            <div class="bg-white rounded-3 shadow-sm p-4 w-100" style="max-width: 900px;">
+                <h2 class="fs-5 fw-semibold mb-4 text-center">10 Membres Archivés</h2>
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover small">
+                        <thead>
+                            <tr class="accent-bg">
+                                <th scope="col" class="py-2 px-3 text-white">Membres</th>
+                                <th scope="col" class="py-2 px-3 text-white">Date début</th>
+                                <th scope="col" class="py-2 px-3 text-white">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr>
+                                <td class="py-2 px-3">Selena Roy</td>
+                                <td class="py-2 px-3">01/01/2022</td>
+                                <td class="py-2 px-3 d-flex gap-3">
+                                    <button class="btn btn-sm p-0 text-secondary hover-text-dark" title="Voir les détails">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm p-0 text-success hover:text-success-emphasis" title="Activer">
+                                        <i class="bi bi-unlock"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-3">Emma Watson</td>
+                                <td class="py-2 px-3">01/01/2022</td>
+                                <td class="py-2 px-3 d-flex gap-3">
+                                    <button class="btn btn-sm p-0 text-secondary hover-text-dark" title="Voir les détails">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm p-0 text-success hover:text-success-emphasis" title="Activer">
+                                        <i class="bi bi-unlock"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-3">Jhon Robert</td>
+                                <td class="py-2 px-3">01/01/2022</td>
+                                <td class="py-2 px-3 d-flex gap-3">
+                                    <button class="btn btn-sm p-0 text-secondary hover-text-dark" title="Voir les détails">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm p-0 text-success hover:text-success-emphasis" title="Activer">
+                                        <i class="bi bi-unlock"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <nav class="d-flex justify-content-between align-items-center mt-4 small">
+                    <button class="btn btn-sm text-secondary p-0 hover-text-action">
+                        <i class="bi bi-arrow-left me-1"></i><span class="d-none d-sm-inline">Précédent</span>
+                    </button>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="d-flex align-items-center justify-content-center accent-bg text-white rounded-circle" style="width: 28px; height: 28px;">1</span>
+                        <a class="btn btn-sm p-0 text-secondary hover-text-action" href="#">2</a>
+                    </div>
+                    <button class="btn btn-sm text-secondary p-0 hover-text-action">
+                        <span class="d-none d-sm-inline">Suivant</span><i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </nav>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Fonction pour gérer le sous-menu
+        function toggleMenu() {
+            const submenu = document.getElementById('submenu');
+            const arrow = document.getElementById('arrow').querySelector('i');
+            
+            // Utiliser la classe 'show' de Bootstrap pour gérer l'état du collapse
+            submenu.classList.toggle('show');
+            arrow.classList.toggle('bi-caret-down-fill');
+            arrow.classList.toggle('bi-caret-up-fill');
+        }
+
+        // Fonction pour gérer la sidebar mobile (simple toggle de classe)
+        function toggleSidebar() {
+            // Sur mobile (<= 767.98px), on affiche/cache la sidebar
+            if (window.innerWidth < 768) {
+                 document.getElementById('sidebar').classList.toggle('d-none');
+            }
+        }
+        
+        // Cacher la sidebar sur mobile après un clic sur un lien
+        document.querySelectorAll('#sidebar a').forEach(item => {
+            item.addEventListener('click', () => {
+                 if (window.innerWidth < 768) {
+                    document.getElementById('sidebar').classList.add('d-none');
+                }
+            });
+        });
+    </script>
+    <script src="/js/archives.js"></script>
+</body>
+</html>

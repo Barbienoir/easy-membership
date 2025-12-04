@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Membre ASC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Couleurs personnalisées selon votre demande */
+        :root {
+            --bleue: #0094C8;
+            --bleue-fonce: #003B70;
+            --blanc-texte: #ffffff;
+            --gris-clair-hover: #e0e0e0;
+        }
+
+        .bg-bleue-fonce { background-color: var(--bleue-fonce) !important; }
+        .bg-bleue { background-color: var(--bleue) !important; }
+        .text-bleue-fonce { color: var(--bleue-fonce) !important; }
+        .text-bleue { color: var(--bleue) !important; }
+
+        /* Styles spécifiques pour le dashboard */
+        .sidebar {
+            width: 250px;
+            position: fixed;
+            height: 100%;
+            z-index: 1050; 
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+        }
+
+        .sidebar-open {
+            transform: translateX(0%);
+        }
+
+        .main-content {
+            margin-left: 0;
+            padding-left: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .sidebar {
+                transform: translateX(0%);
+            }
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #064a59;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <div class="d-flex">
+        <div id="sidebar" class="sidebar bg-bleue-fonce">
+            <div class="d-flex justify-content-between align-items-center p-4 py-5 p-md-4">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-person-badge text-white fs-3"></i>
+                    <h1 class="text-white fs-4 fw-semibold">Membre ASC</h1>
+                </div>
+                <button id="close-sidebar" class="btn text-white d-md-none fs-2 p-0">&times;</button>
+            </div>
+
+            <nav class="mt-4 d-flex flex-column gap-3 text-white fs-5 px-3">
+                <a href="dashboardmembre.html" class="nav-link text-white p-2 rounded-2 active">
+                    <i class="bi bi-cash-coin fs-4 me-3"></i> Cotisations
+                </a>
+                <a href="profil.html" class="nav-link text-white p-2 rounded-2">
+                    <i class="bi bi-person-fill fs-4 me-3"></i> Profil
+                </a>
+                <a href="contrat.html" class="nav-link text-white p-2 rounded-2">
+                    <i class="bi bi-clipboard2-check-fill fs-4 me-3"></i> Contrat
+                </a>
+            </nav>
+        </div>
+
+        <div id="overlay" class="position-fixed top-0 start-0 w-100 h-100 bg-black opacity-50 d-none d-md-none" style="z-index: 1040;"></div>
+        
+        <div class="flex-grow-1 main-content">
+            
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+                <div class="container-fluid">
+                    <button id="open-sidebar" class="btn d-md-none text-bleue-fonce fs-4 p-2">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <h1 class="navbar-brand mb-0 h1 fs-4 ms-3 ms-md-0">User Dashboard</h1>
+                    
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="bi bi-bell fs-4 text-secondary"></i>
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center p-2 rounded-3" href="#" id="dropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://i.pinimg.com/736x/5d/b7/39/5db7399a4c24dc4515bcff4f48b9b7e9.jpg" alt="Avatar" class="rounded-circle object-fit-cover me-2" style="width: 40px; height: 40px;">
+                                <div class="d-flex flex-column me-2 d-none d-sm-block">
+                                    <span class="fw-semibold text-dark" id="userName">Ndieme Diaw</span>
+                                    <span class="text-muted small">Utilisateur</span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+                                <li>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#contactModal">Contacter</button>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <button class="dropdown-item" type="button" id="logoutBtn" data-bs-toggle="modal" data-bs-target="#logoutModal">Déconnexion</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="p-4 p-md-4 space-y-4">
+                
+                <div class="row g-4 mb-4">
+                    
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <p class="text-muted small mb-1">Total Cotisé</p>
+                                <h3 class="fs-2 fw-bold text-bleue-fonce mt-1" id="totalCotise">0 FCFA</h3>
+                                <p class="text-secondary small mt-2">Nombre de cotisations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <p class="text-muted small mb-1">Montant Restant</p>
+                                <h3 class="fs-2 fw-bold text-bleue-fonce mt-1" id="montantRestant">300000 FCFA</h3>
+                                <p class="text-secondary small mt-2">Nombre de cotisations restantes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body p-4 d-flex align-items-center">
+                                <div class="p-3 bg-light rounded-circle d-flex align-items-center justify-content-center me-3" style="min-width: 60px; height: 60px;">
+                                    <i class="bi bi-cash-coin text-bleue fs-3"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <p class="text-muted small mb-1">Caisse (Objectif: 300.000 FCFA)</p>
+                                    <p class="small fw-medium text-dark mb-2">
+                                        <span id="sommeCotisé">0 FCFA</span> / 300.000 FCFA
+                                    </p>
+                                    <div class="progress" style="height: 10px;">
+                                        <div class="progress-bar bg-bleue" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressCaisse"></div>
+                                    </div>
+                                    <p class="text-secondary small mt-2" id="pourcent">0.0% rempli</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-end mb-4">
+                    <button id="cotiser" class="btn btn-lg bg-bleue-fonce text-white shadow-sm px-5" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                        Cotiser
+                    </button>
+                </div>
+
+                <div class="card shadow-sm">
+                    <div class="card-header bg-bleue text-white fw-semibold p-3">
+                        <div class="row">
+                            <div class="col-3 col-sm-2">Mois</div>
+                            <div class="col-3 col-sm-3">Date</div>
+                            <div class="col-3 col-sm-3">Montant</div>
+                            <div class="col-2 col-sm-2">Statut</div>
+                            <div class="col-1 col-sm-2 text-end">Actions</div>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="list-group list-group-flush" id="cotisation-list">
+                            <div class="row py-2 align-items-center border-bottom cotisation-row" data-mois="Octobre" data-paid="false">
+                                <div class="col-3 col-sm-2 fw-medium">Octobre</div>
+                                <div class="col-3 col-sm-3 text-muted date-cotisation">-</div>
+                                <div class="col-3 col-sm-3 montant-cotisation">25000 FCFA</div>
+                                <div class="col-2 col-sm-2 text-teal-900 fw-semibold status-cotisation">En attente</div>
+                                <div class="col-1 col-sm-2 d-flex justify-content-end gap-2">
+                                    <button class="btn btn-sm text-secondary p-1"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="row py-2 align-items-center border-bottom cotisation-row" data-mois="Novembre" data-paid="false">
+                                <div class="col-3 col-sm-2 fw-medium">Novembre</div>
+                                <div class="col-3 col-sm-3 text-muted date-cotisation">-</div>
+                                <div class="col-3 col-sm-3 montant-cotisation">25000 FCFA</div>
+                                <div class="col-2 col-sm-2 text-teal-900 fw-semibold status-cotisation">En attente</div>
+                                <div class="col-1 col-sm-2 d-flex justify-content-end gap-2">
+                                    <button class="btn btn-sm text-secondary p-1"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </div>
+                             <div class="row py-2 align-items-center border-bottom cotisation-row" data-mois="Decembre" data-paid="false">
+                                <div class="col-3 col-sm-2 fw-medium">Decembre</div>
+                                <div class="col-3 col-sm-3 text-muted date-cotisation">-</div>
+                                <div class="col-3 col-sm-3 montant-cotisation">25000 FCFA</div>
+                                <div class="col-2 col-sm-2 text-teal-900 fw-semibold status-cotisation">En attente</div>
+                                <div class="col-1 col-sm-2 d-flex justify-content-end gap-2">
+                                    <button class="btn btn-sm text-secondary p-1"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </div>
+                             <div class="row py-2 align-items-center border-bottom cotisation-row" data-mois="Janvier" data-paid="false">
+                                <div class="col-3 col-sm-2 fw-medium">Janvier</div>
+                                <div class="col-3 col-sm-3 text-muted date-cotisation">-</div>
+                                <div class="col-3 col-sm-3 montant-cotisation">25000 FCFA</div>
+                                <div class="col-2 col-sm-2 text-teal-900 fw-semibold status-cotisation">En attente</div>
+                                <div class="col-1 col-sm-2 d-flex justify-content-end gap-2">
+                                    <button class="btn btn-sm text-secondary p-1"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </div>
+                             <div class="row py-2 align-items-center border-bottom cotisation-row" data-mois="Fevrier" data-paid="false">
+                                <div class="col-3 col-sm-2 fw-medium">Fevrier</div>
+                                <div class="col-3 col-sm-3 text-muted date-cotisation">-</div>
+                                <div class="col-3 col-sm-3 montant-cotisation">25000 FCFA</div>
+                                <div class="col-2 col-sm-2 text-teal-900 fw-semibold status-cotisation">En attente</div>
+                                <div class="col-1 col-sm-2 d-flex justify-content-end gap-2">
+                                    <button class="btn btn-sm text-secondary p-1"><i class="bi bi-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-5">
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <h2 class="fs-5 fw-bold mb-3 text-center text-bleue-fonce">Évolution des cotisations</h2>
+                                <div style="height: 300px;">
+                                    <canvas id="lineCanvas"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <h2 class="fs-5 fw-bold mb-3 text-center text-bleue-fonce">Statistiques de la Caisse</h2>
+                                <div style="height: 300px;">
+                                    <canvas id="barCanvas"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border border-2 border-bleue rounded-3 p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-bleue-fonce" id="contactModalLabel">Comment souhaitez-vous contacter ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-0 text-center">
+                    <div class="d-grid gap-3 mt-4">
+                        <a href="mailto:ndieme.diaw@email.com" class="btn btn-lg bg-bleue text-white" onclick="alert('Contact via Mail en cours')">
+                            Mail
+                        </a>
+                        <a href="tel:+221771234567" class="btn btn-lg btn-success text-white" onclick="alert('Contact via Numéro de téléphone en cours')">
+                            Numéro de téléphone
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border border-2 border-bleue rounded-3 p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-bleue-fonce" id="logoutModalLabel">Se déconnecter ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-0 text-center">
+                    <p class="text-muted mb-4">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="button" class="btn btn-secondary px-5" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-outline-danger px-5" id="confirmLogout">Confirmer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border border-2 border-bleue rounded-3 p-4">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-bleue-fonce" id="paymentModalLabel">Validation du paiement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-0 text-center">
+                    <p class="text-dark fs-5 mb-4">
+                        Vous êtes sur le point de payer votre cotisation de
+                        <span class="fw-bold text-bleue-fonce">25000 FCFA</span>
+                    </p>
+                    <div class="d-flex justify-content-center gap-4">
+                        <button type="button" class="btn btn-outline-secondary px-4 py-2 rounded-pill" data-bs-dismiss="modal">
+                            Annuler
+                        </button>
+                        <button type="button" class="btn btn-success px-4 py-2 rounded-pill" id="validerPayment" data-bs-dismiss="modal">
+                            Valider le paiement
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        // Data et Configuration de base (Ajouté pour éviter les erreurs de variables non définies)
+        const CIBLE_CAISSE = 300000;
+        const COTISATION_MENSUELLE = 25000;
+        let historiqueCotisations = [
+            // Pour simuler le comportement du dashboard. Initialiser avec des données si vous le souhaitez.
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Logique Sidebar Mobile et Déconnexion ---
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            const openBtn = document.getElementById("open-sidebar");
+            const closeBtn = document.getElementById("close-sidebar");
+            const confirmLogoutBtn = document.getElementById("confirmLogout");
+
+            openBtn.addEventListener("click", () => {
+                sidebar.classList.add("sidebar-open");
+                overlay.classList.remove("d-none");
+            });
+
+            closeBtn.addEventListener("click", () => {
+                sidebar.classList.remove("sidebar-open");
+                overlay.classList.add("d-none");
+            });
+
+            overlay.addEventListener("click", () => {
+                sidebar.classList.remove("sidebar-open");
+                overlay.classList.add("d-none");
+            });
+
+            confirmLogoutBtn.addEventListener('click', function() {
+                // Simule une déconnexion
+                alert("Déconnexion simulée");
+                // window.location.href = 'index.html'; 
+            });
+
+            // Note: Les fonctions d'initialisation du dashboard (updateDashboard, updateCharts) sont absentes 
+            // car elles sont normalement dans le fichier externe /js/membres.js que vous avez référencé.
+            // Le dashboard pourrait apparaître vide ou statique tant que ce fichier JS n'est pas chargé.
+            
+            // Simulation d'une fonction pour le paiement (pour éviter une erreur lors du clic)
+            const validerPaymentBtn = document.getElementById('validerPayment');
+             validerPaymentBtn.addEventListener('click', function() {
+                alert("Paiement simulé de 25000 FCFA validé pour Ndieme Diaw!");
+            });
+        });
+    </script>
+</body>
+</html>

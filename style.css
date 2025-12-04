@@ -1,55 +1,109 @@
-/* #083E76;
-#0094C8; */
-body{
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif;
-}
-:root{
-    --bleue:#0094C8;
-    --bleue-foncé:#003B70;
+/* --- Variables de couleur --- */
+:root {
+    --bleu-clair: #00BFFF; /* Bleu clair demandé pour la navbar */
+    --bleu-fonce: #003B70;
     --blanc-texte: #ffffff;
     --gris-clair-hover: #e0e0e0;
 }
 
+/* --- Navbar --- */
 .navbar {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    background-color: #003B70;
+    background-color: var(--bleu-clair) !important; /* couleur bleu clair */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
 
 .navbar .nav-link {
     color: var(--blanc-texte) !important;
     font-weight: 500;
-    transition: color 0.3s;
-   
+    transition: background-color 0.3s, color 0.3s;
+    padding: 0.5rem 0.75rem;
+    margin: 0 0.25rem;
 }
 
 .navbar .nav-link:hover {
-    background-color:#003B70 ;
-    border-radius: 10%;
+    background-color: rgba(255, 255, 255, 0.2); /* léger survol blanc */
+    border-radius: 8px;
 }
 
+/* Boutons ADHERER et CONNEXION */
 .btn-adherer {
-    border-color: #003B70;
+    background-color: var(--bleu-clair);
+    border-color: var(--bleu-clair);
     color: var(--blanc-texte);
+    transition: background-color 0.3s;
 }
 
 .btn-adherer:hover {
-    background-color: #003B70;
-    border-color: #003B70;
-    color: var(--bleue);
+    background-color: var(--bleu-fonce);
+    border-color: var(--bleu-fonce);
+    color: var(--blanc-texte);
 }
-
 
 .btn-connexion {
-    background-color:var(--blanc-texte);
+    background-color: var(--blanc-texte);
     border-color: var(--blanc-texte);
-    color:#003B70 ;
-   
+    color: var(--bleu-fonce);
+    transition: background-color 0.3s, color 0.3s;
 }
+
 .btn-connexion:hover {
-    background-color:var(--blanc-texte);
+    background-color: var(--gris-clair-hover);
     border-color: var(--blanc-texte);
-    color: #003B70;
+    color: var(--bleu-fonce);
+}
+
+/* Fix navbar fixe avec padding top du body */
+body {
+    padding-top: 70px; /* Ajuster selon la hauteur de la navbar */
+}
+/* --- Footer --- */
+footer {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bleu-fonce); /* bleu foncé pour contraste navbar bleu clair */
+    color: var(--blanc-texte);
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+footer h5, footer h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffc107; /* couleur jaune/or pour les titres */
+}
+
+footer a {
+    color: var(--blanc-texte);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #00BFFF; /* bleu clair au survol pour rappel de la navbar */
+}
+
+.btn-floating {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--blanc-texte);
+    border: 1px solid var(--blanc-texte);
+    transition: all 0.3s;
+}
+
+.btn-floating:hover {
+    background-color: #00BFFF; /* bleu clair au survol */
+    color: var(--blanc-texte);
+    border-color: #00BFFF;
+}
+
+hr {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

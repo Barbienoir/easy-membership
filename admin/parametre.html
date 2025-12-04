@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+    <style>
+        /* 1. Définition des couleurs personnalisées */
+        :root {
+            --bleu: #0094C8;
+            --bleu-fonce: #003B70;
+            --blanc-texte: #ffffff;
+            --bs-gris-fond: #f4f4f4;
+            --bs-success-manual: #20df7f; /* Vert pour Enregistrer */
+        }
+
+        body {
+            background-color: var(--bs-gris-fond);
+        }
+
+        /* 2. Styles spécifiques à la Sidebar */
+        #sidebar {
+            width: 250px;
+            background-color: var(--bleu-fonce);
+            transition: transform 0.3s ease;
+            z-index: 1050; 
+        }
+        @media (max-width: 767.98px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+        }
+        @media (min-width: 768px) {
+            .content-wrapper {
+                margin-left: 250px !important;
+            }
+        }
+
+        .nav-link.custom-hov:hover, .nav-item .active:hover {
+            background-color: var(--bleu);
+            border-radius: 0.25rem;
+        }
+
+        /* 3. Style pour l'élément de navigation actif */
+        .nav-item .active {
+            background-color: var(--bleu);
+            border-radius: 0.25rem;
+        }
+
+        /* 4. Couleurs d'accentuation */
+        .accent-bg {
+            background-color: var(--bleu) !important;
+            color: var(--blanc-texte);
+        }
+        .accent-border-right {
+             /* Séparateur pour la section Profil */
+            border-right: 1px solid #ccc; 
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="sidebar" class="position-fixed h-100 d-flex flex-column pt-0">
+        <div class="d-flex align-items-center justify-content-center py-3 border-bottom border-secondary-subtle">
+            <span class="text-white fw-bold text-uppercase">Bakeli Tontine</span>
+        </div>
+
+        <div class="flex-grow-1 overflow-auto p-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="dasboard.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-list me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a href="Utilisateur.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-person me-2"></i> Utilisateur
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a href="cotisation.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-currency-dollar me-2"></i> Cotisation
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <button class="btn nav-link text-white d-flex justify-content-between align-items-center w-100 custom-hov active" onclick="toggleMenu()" aria-expanded="true">
+                        <span class="d-flex align-items-center gap-2">⚙️ Paramètres</span>
+                        <span id="arrow" class="transition-transform"><i class="bi bi-caret-down-fill"></i></span>
+                    </button>
+                    <div id="submenu" class="collapse show ms-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="parametre.html" class="nav-link text-white custom-hov py-2 active">Paramètres Généraux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="utilisateurparametre.html" class="nav-link text-white custom-hov py-2">Utilisateurs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="archives.html" class="nav-link text-white custom-hov py-2">Archives</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="bloques.html" class="nav-link text-white custom-hov py-2">Membres Bloqués</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper d-flex flex-column min-vh-100">
+
+        <header class="d-flex align-items-center justify-content-between p-3 bg-white shadow-sm">
+            <button id="menu-btn" class="btn d-md-none fs-4" type="button" onclick="toggleSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <h1 class="fs-4 fw-bold mb-0">Paramètres</h1>
+        </header>
+
+        <section class="p-3 p-md-4">
+            <h1 class="text-center fs-3 mb-4">Paramètres généraux</h1>
+            
+            <div class="row g-4">
+                
+                <div class="col-12 col-md-4 text-center pb-4 pb-md-0 border-bottom border-md-end border-secondary">
+                    <p class="fw-semibold">Profil</p>
+                    <img src="istockphoto-1300845620-612x612.jpg" alt="Profil" class="mx-auto img-fluid rounded-circle mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                    <h2 class="fs-5 fw-bold mt-2">Nogaye Ndao</h2>
+
+                    <div class="mt-3">
+                        <button id="openModal" class="btn text-white px-4 py-2 shadow" style="background-color: var(--bleu-fonce);" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                            Éditer Profil
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-7 offset-md-1">
+                    
+                    <h4 class="accent-bg p-2 fs-6 mb-0">Infos Généraux</h4>
+                    <table class="table table-sm mb-4 bg-white">
+                        <tbody>
+                            <tr>
+                                <td class="p-2">Prénom</td>
+                                <td class="p-2 text-end">Nogaye</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Nom</td>
+                                <td class="p-2 text-end">Ndao</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Statut</td>
+                                <td class="p-2 text-end">Administrateur</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">E-mail</td>
+                                <td class="p-2 text-end">nogayendao2020@gmail.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 class="accent-bg p-2 fs-6 mt-4 mb-0">Statistiques</h4>
+                    <table class="table table-sm bg-white">
+                        <tbody>
+                            <tr>
+                                <td class="p-2">Membres Ajoutés</td>
+                                <td class="p-2 text-end">0</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Membres Bloqués</td>
+                                <td class="p-2 text-end">0</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Membres Archivés</td>
+                                <td class="p-2 text-end">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-xl shadow-lg">
+          <div class="modal-header border-0">
+            <h5 class="modal-title fw-bold" id="editProfileModalLabel">Éditer profil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small">Nom</label>
+                <input type="text" class="form-control" value="Ndao">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small">Prénom</label>
+                <input type="text" class="form-control" value="Nogaye">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small">Téléphone</label>
+                <input type="tel" class="form-control" placeholder="+221 77 000 00 00">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small">E-mail</label>
+                <input type="email" class="form-control" value="nogayendao2020@gmail.com">
+              </div>
+              <div class="col-12">
+                <label class="form-label small">Statut</label>
+                <input type="text" class="form-control" value="Administrateur" readonly>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-center border-0">
+            <button class="btn text-white px-4 py-2 shadow" style="background-color: var(--bs-success-manual); border-color: var(--bs-success-manual);">
+              Enregistrer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Fonction pour gérer le sous-menu
+        function toggleMenu() {
+            const submenu = document.getElementById('submenu');
+            const arrow = document.getElementById('arrow').querySelector('i');
+            
+            // Si le sous-menu est déjà affiché (classe 'show' ou l'absence de 'hidden' dans Tailwind)
+            const isExpanded = submenu.classList.contains('show'); 
+            
+            if (!isExpanded) {
+                 submenu.classList.add('show');
+                 arrow.classList.remove('bi-caret-down-fill');
+                 arrow.classList.add('bi-caret-up-fill');
+            } else {
+                 submenu.classList.remove('show');
+                 arrow.classList.add('bi-caret-down-fill');
+                 arrow.classList.remove('bi-caret-up-fill');
+            }
+        }
+        
+        // Fonction pour gérer la sidebar mobile (simple toggle de classe)
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('d-none'); 
+        }
+
+        // Cacher le menu sur mobile lors de la sélection d'un lien
+        document.querySelectorAll('#sidebar a').forEach(item => {
+            item.addEventListener('click', () => {
+                 if (window.innerWidth < 768) {
+                    document.getElementById('sidebar').classList.add('d-none');
+                }
+            });
+        });
+    </script>
+    <script src="/js/parametre.js"></script>
+</body>
+</html>

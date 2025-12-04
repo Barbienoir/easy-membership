@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Dashboard Bakéli Tontine - Contrat</title>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bleu-fonce': '#003B70', /* Correspond à #093545 (Sidebar) */
+                        'vert-clair': '#20df7f',
+                        'bleu-secondaire': '#0094C8', 
+                        'gris-fond': '#f4f4f4',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-200">
+    <div class="flex h-screen overflow-hidden">
+        <div id="sidebar" class="fixed inset-y-0 left-0 bg-bleu-fonce w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-50">
+            <div class="flex justify-between items-center px-4 py-5 md:py-10">
+                <div class="flex items-center gap-3">
+                    <i class="bi bi-cash-coin text-white text-3xl"></i> 
+                    <a href="index.html">
+                        <h1 class="text-white text-2xl font-semibold">Membre ASC</h1>
+                    </a>
+                </div>
+                <button id="close-sidebar" class="md:hidden text-white text-3xl">&times;</button>
+            </div>
+
+            <nav class="mt-10 flex flex-col gap-4 text-white text-lg px-5">
+                <a href="dashboardmembre.html" class="flex items-center gap-3 py-2 px-3 hover:bg-[#064a59] rounded-lg">
+                    <i class="bi bi-cash-coin text-2xl"></i> Cotisations
+                </a>
+                <a href="profil.html" class="flex items-center gap-3 py-2 px-3 hover:bg-[#064a59] rounded-lg">
+                    <i class="bi bi-person-fill text-2xl"></i> Profil
+                </a>
+                <a href="contrat.html" class="flex items-center gap-3 py-2 px-3 bg-[#064a59] rounded-lg">
+                    <i class="bi bi-clipboard2-check-fill text-2xl"></i> Contrat
+                </a>
+            </nav>
+        </div>
+
+        <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden"></div>
+
+        <button id="open-sidebar" class="md:hidden fixed top-4 left-4 z-50 p-2 text-gray-700">
+            <i class="bi bi-list text-3xl"></i>
+        </button>
+
+        <div class="flex-1 flex flex-col md:ml-64">
+            <header class="bg-white shadow px-4 py-4 sticky top-0 z-30 flex justify-between items-center">
+                <h1 class="text-xl md:text-2xl font-semibold ml-10 md:ml-0">Mon Contrat</h1>
+                
+                <div class="flex items-center gap-3 relative">
+                    <i class="bi bi-bell text-2xl text-gray-500 cursor-pointer hover:text-gray-700"></i>
+                    
+                    <div class="relative">
+                        <button id="dropdownUserBtn" class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-gray-100">
+                            <img src="https://i.pinimg.com/736x/5d/b7/39/5db7399a4c24dc4515bcff4f48b9b7e9.jpg" alt="Avatar" class="w-10 h-10 rounded-full object-cover" />
+                            <div class="flex flex-col text-left">
+                                <span class="font-semibold text-gray-900 text-sm md:text-lg" id="userName">Ndieme diaw</span>
+                                <span class="text-gray-500 text-xs md:text-sm">Utilisateur</span>
+                            </div>
+                            <i class="bi bi-chevron-down text-gray-400"></i>
+                        </button>
+
+                        <div id="userDropdownMenu" class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden z-40">
+                            <div class="py-1">
+                                <button onclick="document.getElementById('contactModal').classList.remove('hidden')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contacter</button>
+                                <button onclick="document.getElementById('logoutModal').classList.remove('hidden')" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Déconnexion</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </header>
+
+            <div class="max-w-4xl mx-auto p-6 md:p-8 bg-white rounded-xl shadow-lg mt-8 mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-bleu-fonce mb-6 border-b-2 pb-2 border-vert-clair">Contrat d'Engagement Bakéli Tontine</h1>
+
+                <p class="text-gray-700 mb-6">
+                    Membre : <span id="userFirstName" class="font-semibold">Ndieme </span> <span id="userLastName" class="font-semibold">Diaw</span><br>
+                    Date d'adhésion : <span id="adhesionDate" class="font-semibold text-gray-500">2025-10-01 (Simulé)</span>
+                </p>
+
+                <div class="space-y-6 text-gray-700 text-sm md:text-base">
+                    <p class="font-semibold text-lg text-bleu-fonce">
+                        Déclaration d'Engagement
+                    </p>
+                    <p>
+                        En tant que membre de l'Association , je, <span id="userFullName" class="font-bold text-bleu-secondaire">Ndieme Diaw</span>, reconnais et accepte les conditions suivantes :
+                    </p>
+                    
+                    <ul class="list-disc list-inside space-y-3 pl-5">
+                        <li>J'ai **lu, compris et accepté** l'intégralité du règlement intérieur de la tontine, y compris les modalités de cotisation et de décaissement.</li>
+                        <li>Je m'engage à effectuer mes **cotisations mensuelles de 25 000 FCFA** (ou tout montant défini par le règlement) dans les délais impartis.</li>
+                        <li>Je suis responsable de la **traçabilité de mes contributions** et m'engage à notifier tout problème de paiement dans les plus brefs délais.</li>
+                        <li>J'accepte que **tout manquement** aux obligations de paiement (retard ou non-paiement) puisse entraîner des **sanctions ou des pénalités** conformément aux statuts du groupe.</li>
+                        <li>Je consens à ce que mes informations personnelles et financières soient traitées dans le cadre strict du fonctionnement de la tontine.</li>
+                    </ul>
+                    
+                    <p class="pt-4 border-t border-gray-200">
+                        Ce contrat constitue un **engagement officiel et contraignant** entre le membre et la Tontine Bakéli, prenant effet dès l'adhésion à la plateforme.
+                    </p>
+                    
+                    <div class="mt-8 text-right text-gray-500">
+                        <p>Fait à Dakar, le <span id="currentDate"></span></p>
+                        <p class="mt-2 font-bold text-bleu-fonce">Signature électronique du membre (Accepté)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contactModal" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 z-[99]">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 border-2 border-bleu-fonce text-center">
+            <h2 class="text-xl font-bold mb-6 text-bleu-fonce">Comment souhaitez-vous contacter ?</h2>
+            
+            <div class="mt-4 flex flex-col gap-3">
+                <a href="mailto:cisseahmettidiane@gmail.com"
+                    class="px-4 py-2 rounded-lg bg-bleu-secondaire text-white hover:bg-bleu-fonce transition duration-200">
+                    <i class="bi bi-envelope-fill mr-2"></i> Mail
+                </a>
+                <a href="tel:+221764696605"
+                    class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition duration-200">
+                    <i class="bi bi-phone-fill mr-2"></i> Numéro de téléphone
+                </a>
+            </div>
+
+            <button onclick="document.getElementById('contactModal').classList.add('hidden')"
+                class="mt-6 px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">
+                Annuler
+            </button>
+        </div>
+    </div>
+
+    <div id="logoutModal" class="hidden fixed inset-0 flex items-center justify-center bg-black/50 z-[99]">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6 border-2 border-bleu-fonce text-center">
+            <h2 class="text-xl font-bold mb-4 text-bleu-fonce">Se déconnecter ?</h2>
+            <p class="text-gray-600 mb-6">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+            
+            <div class="flex justify-center gap-4">
+                <button onclick="document.getElementById('logoutModal').classList.add('hidden')"
+                    class="px-6 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200">
+                    Annuler
+                </button>
+                <button onclick="alert('Vous êtes déconnecté !'); document.getElementById('logoutModal').classList.add('hidden'); window.location.href='index.html';"
+                    class="px-6 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-200">
+                    Confirmer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const openBtn = document.getElementById("open-sidebar");
+        const closeBtn = document.getElementById("close-sidebar");
+        const dropdownBtn = document.getElementById("dropdownUserBtn");
+        const dropdownMenu = document.getElementById("userDropdownMenu");
+
+        // Gestion Sidebar Mobile
+        openBtn.addEventListener("click", () => {
+            sidebar.classList.remove("-translate-x-full");
+            overlay.classList.remove("hidden");
+        });
+
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        });
+
+        overlay.addEventListener("click", () => {
+            sidebar.classList.add("-translate-x-full");
+            overlay.classList.add("hidden");
+        });
+
+        // Gestion Dropdown Profil
+        dropdownBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!dropdownBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+        
+        // Remplissage dynamique des données du contrat
+        const firstName = "Ahmet Tidiane";
+        const lastName = "Cissé";
+        const fullName = `${firstName} ${lastName}`;
+        const today = new Date().toLocaleDateString("fr-FR");
+
+        document.getElementById('userFirstName').innerText = firstName;
+        document.getElementById('userLastName').innerText = lastName;
+        document.getElementById('userFullName').innerText = fullName;
+        document.getElementById('currentDate').innerText = today;
+    </script>
+</body>
+</html>

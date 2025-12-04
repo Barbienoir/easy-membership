@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakéli Tontine - Cotisation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <style>
+        /* 1. Définition des couleurs personnalisées */
+        :root {
+            --bleu: #0094C8;
+            --bleu-fonce: #003B70;
+            --blanc-texte: #ffffff;
+            --gris-clair-hover: #e0e0e0;
+            --bs-gris-fond: #f4f4f4;
+            --bs-success-manual: #20df7f;
+        }
+
+        body {
+            background-color: var(--bs-gris-fond);
+        }
+
+        /* 2. Styles spécifiques à la Sidebar */
+        #sidebar {
+            width: 250px;
+            background-color: var(--bleu-fonce);
+            transition: transform 0.3s ease;
+            z-index: 1050; 
+        }
+        @media (max-width: 767.98px) {
+            #sidebar {
+                transform: translateX(-100%);
+            }
+        }
+        @media (min-width: 768px) {
+            .content-wrapper {
+                margin-left: 250px !important;
+            }
+        }
+
+        .nav-link.custom-hov:hover, .nav-item .active:hover {
+            background-color: var(--bleu);
+            border-radius: 0.25rem;
+        }
+
+        /* 3. Style pour l'élément de navigation actif */
+        .nav-item .active {
+            background-color: var(--bleu);
+            border-radius: 0.25rem;
+        }
+
+        /* 4. Style des boîtes cliquables (hover) */
+        .box-stats:hover {
+            background-color: var(--gris-clair-hover);
+            cursor: pointer;
+        }
+
+        /* 5. Couleur d'accentuation pour les tables */
+        .accent-color {
+            background-color: var(--bleu) !important;
+            color: var(--blanc-texte);
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="sidebar" class="position-fixed h-100 d-flex flex-column pt-0">
+        <div class="d-flex align-items-center justify-content-center py-3 border-bottom border-secondary-subtle">
+            <span class="text-white fw-bold text-uppercase">Bakeli Tontine</span>
+        </div>
+
+        <div class="flex-grow-1 overflow-auto p-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="dasboard.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-list me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a href="Utilisateur.html" class="nav-link text-white custom-hov">
+                        <i class="bi bi-person me-2"></i> Utilisateur
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a href="cotisation.html" class="nav-link text-white custom-hov active" aria-current="page">
+                        <i class="bi bi-currency-dollar me-2"></i> Cotisation
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <button class="btn nav-link text-white d-flex justify-content-between align-items-center w-100 custom-hov" onclick="toggleMenu()">
+                        <span class="d-flex align-items-center gap-2">⚙️ Paramètres</span>
+                        <span id="arrow" class="transition-transform"><i class="bi bi-caret-down-fill"></i></span>
+                    </button>
+                    <div id="submenu" class="collapse ms-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="parametre.html" class="nav-link text-white custom-hov py-2">Paramètres Généraux</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="utilisateurparametre.html" class="nav-link text-white custom-hov py-2">Utilisateurs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="archives.html" class="nav-link text-white custom-hov py-2">Archives</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="bloques.html" class="nav-link text-white custom-hov py-2">Membres Bloqués</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper d-flex flex-column min-vh-100">
+
+        <header class="d-flex align-items-center justify-content-between p-3 bg-white shadow-sm">
+            <button id="menu-btn" class="btn d-md-none fs-4" type="button" onclick="toggleSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <h1 class="fs-4 fw-bold mb-0">Cotisation</h1>
+        </header>
+
+        <main class="flex-grow-1 p-3 p-md-4">
+            
+            <div class="row g-4 mb-4">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm text-center p-4 p-sm-5 rounded-3 box-stats" id="actifs"> 
+                        <h5 class="card-title fw-normal mb-1">Juin</h5>
+                        <h1 class="card-text fw-bold">0 CFA</h1>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card shadow-sm text-center p-4 p-sm-5 rounded-3 box-stats" id="bloques"> 
+                        <h5 class="card-title fw-normal mb-1">Mai</h5>
+                        <h1 class="card-text fw-bold">0 CFA</h1>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card shadow-sm text-center p-4 p-sm-5 rounded-3 box-stats" id="tous"> 
+                        <h5 class="card-title fw-normal mb-1">Total Caisse</h5>
+                        <h1 class="card-text fw-bold">0 CFA</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive p-3 p-md-0">
+                <table class="table table-auto w-100 table-bordered shadow-sm rounded-3 small">
+                    <thead class="accent-color">
+                        <tr>
+                            <th scope="col" class="p-2 text-white">Membre</th>
+                            <th scope="col" class="p-2 text-white">Date début</th>
+                            <th scope="col" class="p-2 text-white">Seuil</th>
+                            <th scope="col" class="p-2 text-white">Progression</th>
+                            <th scope="col" class="p-2 text-white">Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body" class="text-center bg-white">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Fonction pour gérer le sous-menu
+        function toggleMenu() {
+            const submenu = document.getElementById('submenu');
+            const arrow = document.getElementById('arrow').querySelector('i');
+            
+            submenu.classList.toggle('show');
+            arrow.classList.toggle('bi-caret-down-fill');
+            arrow.classList.toggle('bi-caret-up-fill');
+        }
+
+        // Fonction pour gérer la sidebar mobile (simple toggle de classe)
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('d-none'); 
+        }
+
+        // Cacher le menu sur mobile lors de la sélection d'un lien
+        document.querySelectorAll('#sidebar a').forEach(item => {
+            item.addEventListener('click', () => {
+                 if (window.innerWidth < 768) {
+                    document.getElementById('sidebar').classList.add('d-none');
+                }
+            });
+        });
+    </script>
+    <script src="/js/cotisation.js"></script>
+</body>
+</html>
