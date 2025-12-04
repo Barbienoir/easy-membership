@@ -220,3 +220,4 @@ document.addEventListener('DOMContentLoaded', function() {
     inputAdresse.addEventListener('blur', () => validateRequired(inputAdresse, 'Adresse'));
     inputRole.addEventListener('change', () => validateRole(inputRole)); 
 });
+// 

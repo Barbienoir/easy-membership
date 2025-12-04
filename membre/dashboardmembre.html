@@ -319,22 +319,67 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+
     <script>
-        // Data et Configuration de base (Ajouté pour éviter les erreurs de variables non définies)
+        // Data et Configuration de base (inchangées)
         const CIBLE_CAISSE = 300000;
         const COTISATION_MENSUELLE = 25000;
-        let historiqueCotisations = [
-            // Pour simuler le comportement du dashboard. Initialiser avec des données si vous le souhaitez.
-        ];
+        let historiqueCotisations = [];
+
+        // --- Logique d'Authentification et de Redirection ---
+        function checkAuthentication() {
+            const isAuthenticated = localStorage.getItem('isAuthenticated');
+            const userRole = localStorage.getItem('userRole');
+            const userName = localStorage.getItem('userName');
+
+            if (isAuthenticated !== 'true' || !userRole) {
+                // Non connecté ou informations manquantes : Redirection vers la page d'accueil
+                alert("Accès refusé. Veuillez vous connecter.");
+                window.location.href = 'index.html'; // Assurez-vous que 'index.html' est votre page d'accueil
+                return false;
+            }
+
+            // Vérification des rôles autorisés pour cette page (tous sauf le Président qui va à 'cotisations.html')
+            if (userRole === 'Président') {
+                // Si c'est le Président, le renvoyer à la page qui lui est dédiée (cotisations.html)
+                window.location.href = 'cotisations.html';
+                return false;
+            }
+
+            // Mise à jour de l'affichage du nom de l'utilisateur
+            if (userName) {
+                document.getElementById('userName').textContent = userName;
+            }
+            
+            return true;
+        }
+        
+        // Fonction de déconnexion
+        function handleLogout() {
+            // Nettoyage du Local Storage
+            localStorage.removeItem('isAuthenticated');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('userName');
+            
+            // Redirection vers la page de connexion ou d'accueil
+            window.location.href = 'connexion.html'; // Retour à la page de connexion
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
+            // ** VÉRIFICATION D'ACCÈS **
+            if (!checkAuthentication()) {
+                return; // Arrête l'exécution si la vérification échoue
+            }
+            
             // --- Logique Sidebar Mobile et Déconnexion ---
             const sidebar = document.getElementById("sidebar");
             const overlay = document.getElementById("overlay");
             const openBtn = document.getElementById("open-sidebar");
             const closeBtn = document.getElementById("close-sidebar");
             const confirmLogoutBtn = document.getElementById("confirmLogout");
+            const validerPaymentBtn = document.getElementById('validerPayment');
 
+            // Listeners pour la barre latérale (Sidebar)
             openBtn.addEventListener("click", () => {
                 sidebar.classList.add("sidebar-open");
                 overlay.classList.remove("d-none");
@@ -350,22 +395,20 @@
                 overlay.classList.add("d-none");
             });
 
-            confirmLogoutBtn.addEventListener('click', function() {
-                // Simule une déconnexion
-                alert("Déconnexion simulée");
-                // window.location.href = 'index.html'; 
+            // Listener pour la déconnexion
+            confirmLogoutBtn.addEventListener('click', handleLogout);
+
+            // Simulation d'une fonction pour le paiement
+            validerPaymentBtn.addEventListener('click', function() {
+                alert(`Paiement simulé de ${COTISATION_MENSUELLE} FCFA validé pour ${localStorage.getItem('userName')}!`);
             });
 
-            // Note: Les fonctions d'initialisation du dashboard (updateDashboard, updateCharts) sont absentes 
-            // car elles sont normalement dans le fichier externe /js/membres.js que vous avez référencé.
-            // Le dashboard pourrait apparaître vide ou statique tant que ce fichier JS n'est pas chargé.
-            
-            // Simulation d'une fonction pour le paiement (pour éviter une erreur lors du clic)
-            const validerPaymentBtn = document.getElementById('validerPayment');
-             validerPaymentBtn.addEventListener('click', function() {
-                alert("Paiement simulé de 25000 FCFA validé pour Ndieme Diaw!");
-            });
+            // Remplacez cette simulation par votre code d'initialisation du dashboard réel
+            // Ex: updateDashboard(historiqueCotisations);
+            // Ex: initializeCharts();
         });
     </script>
+</body>
+</html>
 </body>
 </html>

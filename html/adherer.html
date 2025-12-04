@@ -11,22 +11,22 @@
 
     <style>
         .bouton,
-        .bleue{
-            background-color:#003B70;
+        .bleue {
+            background-color: #003B70;
             font-size: medium;
         }
+
         .bouton,
-        .bouton:hover,   
+        .bouton:hover,
         .bouton:active,
         .bouton:focus {
-    background-color: #003B70 !important;
-    color: white !important;
-}
+            background-color: #003B70 !important;
+            color: white !important;
+        }
 
-        
-        .register{
+        .register {
             font-size: 1.8rem;
-            color:#003B70 ;
+            color: #003B70;
         }
     </style>
 </head>
@@ -35,77 +35,97 @@
     <div class="container-fluid">
         <div class="row py-2">
             <div class="col-md-6 col-8 mx-auto">
-                
                 <span class="ms-5 register">Page d'enregistrement !</span>
             </div>
         </div>
         <div class="row py-5 bleue">
-           <div class="col-md-6 mx-auto bg-light rounded" id="registrationForm">
-            <form id="myForm">
-                <div class="input-group input-group-lg pt-3">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" class="form-control" placeholder="Prénom et Nom" id="inputNom">
-                    <div class="invalid-feedback"></div> 
-                </div>
-                <div class="input-group input-group-lg pt-3">
-                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                    <input type="Number" class="form-control" placeholder="Téléphone" id="inputTelephone">
-                    <div class="invalid-feedback"></div>
-                </div>
-                <div class="input-group input-group-lg pt-3">
-                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="mail" class="form-control" placeholder="Email" id="inputEmail">
-                    <div class="invalid-feedback"></div>
-                </div>
-                <div class="input-group input-group-lg pt-3">
-                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Mot de passe" id="inputPassword">
-                    <span class="input-group-text"><i class="bi bi-eye-fill text-secondary"></i></span>
-                    <div class="invalid-feedback"></div>
-                </div>
-                <div class="input-group input-group-lg pt-3">
-                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="password" class="form-control" placeholder="Corfirmation Mot de passe" **id="inputConfirmPassword"**>
-                    <span class="input-group-text"><i class="bi bi-eye-fill text-secondary"></i></span>
-                    <div class="invalid-feedback"></div>
-                </div>
-                <div class="input-group input-group-lg pt-3">
-                    <span class="input-group-text"><i class="bi bi-card-list"></i></span>
-                    <input type="text" class="form-control" placeholder="Profession" id="inputTitre">
-                    <div class="invalid-feedback"></div>
-                </div>
-                <div class="input-group input-group-lg pt-3">
-                    <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
-                    <input type="text" class="form-control" placeholder="Adresse" id="inputAdresse">
-                    <div class="invalid-feedback"></div>
-                </div>
-                
-                <div class="input-groupinput-group-lg pt-3">
-                    <label class="input-group-text" for="inputRole">Roles</label>
-                    <select class="form-select" id="inputRole">
-                        <option value="" selected>Choose...</option>
-                        <option value="1">Président</option>
-                        <option value="2">Secretaire</option>
-                        <option value="3">Membre</option>
-                    </select>
-                    <div class="invalid-feedback"></div>
-                </div>
-            
-                <div class="d-flex justify-content-between  pt-3">
-                    <!-- <a href="index.html" class="btn text-light btn-lg fw-bold ms-5 bouton"></a> -->
-                    <button type="submit"  class="btn btn-lg px-5 mb-3 fw-bold text-light bouton"> <a href="connexion.html"></a>connexion</button>
+            <div class="col-md-6 mx-auto bg-light rounded" id="registrationForm">
+                <form id="myForm">
+                    <div class="input-group input-group-lg pt-3">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" placeholder="Prénom et Nom" id="inputNom">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="input-group input-group-lg pt-3">
+                        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                        <input type="Number" class="form-control" placeholder="Téléphone" id="inputTelephone">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="input-group input-group-lg pt-3">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="mail" class="form-control" placeholder="Email" id="inputEmail">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="input-group input-group-lg pt-3">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="Mot de passe" id="inputPassword">
+                        <span class="input-group-text"><i class="bi bi-eye-fill text-secondary"></i></span>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="input-group input-group-lg pt-3">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="Corfirmation Mot de passe" id="inputConfirmPassword">
+                        <span class="input-group-text"><i class="bi bi-eye-fill text-secondary"></i></span>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="input-group input-group-lg pt-3">
+                        <span class="input-group-text"><i class="bi bi-card-list"></i></span>
+                        <input type="text" class="form-control" placeholder="Profession" id="inputTitre">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="input-group input-group-lg pt-3">
+                        <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+                        <input type="text" class="form-control" placeholder="Adresse" id="inputAdresse">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    
+                    <div class="input-group input-group-lg pt-3">
+                        <label class="input-group-text" for="inputRole">Rôles</label>
+                        <select class="form-select" id="inputRole">
+                            <option value="" selected>Choisir...</option>
+                            <option value="1">Président</option>
+                            <option value="2">Secrétaire</option>
+                            <option value="3">Membre</option>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between pt-4 pb-3">
+                        <a href="/index.html" class="btn btn-lg px-5 fw-bold text-light bouton">
+                            Retour
+                        </a>
 
-                    <button type="submit" id="submitBtn" class="btn btn-lg px-5 mb-3 fw-bold text-light bouton">Valider</button>
-                </div>
-               
-            </form>
+                        <button type="submit" id="submitBtn" class="btn btn-lg px-5 fw-bold text-light bouton">
+                            Valider
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-<script src="/js/adherer.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="/js/adherer.js"></script> 
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission classique du formulaire
+
+            // *** Simulation de la validation / Traitement des données ***
+            // Normalement, ici vous feriez une validation JavaScript et un appel API (Fetch/Ajax)
+
+            // Si le traitement est réussi (simulé ici par un simple setTimeout):
+            alert('Inscription réussie ! Vous allez être redirigé vers la page de connexion.');
+            
+            // Redirection vers la page de connexion
+            window.location.href = 'connexion.html'; 
+            
+            // Si vous avez un fichier JS externe (adherer.js), vous pouvez déplacer ce code là-bas.
+        });
+        
+        // J'ai aussi retiré le bouton 'connexion' du HTML qui était mal placé et redondant.
+    </script>
 </body>
 
 </html>
